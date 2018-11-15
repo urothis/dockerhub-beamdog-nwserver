@@ -1,0 +1,6 @@
+*.tlk filter=lfs diff=lfs merge=lfs -text
+*.key filter=lfs diff=lfs merge=lfs -text
+*.bif filter=lfs diff=lfs merge=lfs -text
+nwserver-linux filter=lfs diff=lfs merge=lfs -text
+*.mod filter=lfs diff=lfs merge=lfs -text
+*.hak filter=lfs diff=lfs merge=lfs -text
