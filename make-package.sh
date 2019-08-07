@@ -12,7 +12,7 @@ if [ ! -f "$NWN_ROOT/data/nwn_base.key" ]; then
 fi
 
 set -x
-cp -va "$NWN_ROOT"/build-date.txt data
+#cp -va "$NWN_ROOT"/build-date.txt data
 cp -va "$NWN_ROOT"/bin/linux-x86/nwserver-linux data/bin/linux-x86/
 # cp -va "$NWN_ROOT"/bin/macos/nwserver-macos data/bin/macos/
 # cp -va "$NWN_ROOT"/bin/win32/nwserver.exe data/bin/win32/
