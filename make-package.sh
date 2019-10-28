@@ -19,7 +19,7 @@ cp -va "$NWN_ROOT"/bin/linux-x86/nwserver-linux data/bin/linux-x86/
 cp -va "$NWN_ROOT"/data/dialog.tlk data/data/
 nwn_resman_pkg -d data/data --root "$NWN_ROOT"
 
-docker build -t beamdog/nwserver:$BRANCH -f Dockerfile .
+docker build --no-cache -t beamdog/nwserver:$BRANCH -f Dockerfile .
 docker tag beamdog/nwserver:$BRANCH beamdog/nwserver:latest
 set +x
 

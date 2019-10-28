@@ -1,9 +1,8 @@
-FROM i386/debian:stretch-slim
+FROM debian:stretch-slim
 LABEL maintainer "niv@beamdog.com"
 
 RUN apt-get update && \
-  apt-get --no-install-recommends -y install \
-    libc6:i386 libstdc++6:i386 && \
+  apt-get --no-install-recommends -y install libc6 libstdc++6 && \
   rm -r /var/cache/apt /var/lib/apt/lists
 
 # Data layout:
