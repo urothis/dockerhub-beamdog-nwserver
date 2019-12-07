@@ -19,6 +19,7 @@ mkdir -p data/bin/linux-x86/
 cp -va "$NWN_ROOT"/bin/linux-x86/nwserver-linux data/bin/linux-x86/
 mkdir -p data/data/
 cp -va "$NWN_ROOT"/data/dialog.tlk data/data/
+cp -va "$NWN_ROOT"/data/cacert.pem data/data/
 nwn_resman_pkg -d data/data --root "$NWN_ROOT"
 
 docker build --no-cache -t beamdog/nwserver:$TAG -f Dockerfile .
