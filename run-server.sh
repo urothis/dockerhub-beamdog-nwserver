@@ -15,6 +15,11 @@ for p in dialog.tlk dialogf.tlk; do
   if [ ! -L $HOMEPATH/$p ]; then ln -vs $ROHOMEPATH/$p $HOMEPATH/; fi
 done
 
+if [ -e $ROHOMEPATH/settings.tml ]; then
+  echo "[*] Linking in settings.tml"
+  ln -vs $ROHOMEPATH/settings.tml $HOMEPATH/;
+fi
+
 # Setup read-only copies of nwn and nwnplayer.ini
 echo "[*] Importing configuration"
 if [ -f $ROHOMEPATH/nwn.ini ]; then
@@ -45,14 +50,20 @@ if [ "$NWN_TAIL_LOGS" = "y" ]; then
     /nwn/run/logs.0/nwserverError1.txt) &
 fi
 
-function backup_cryptographic_secret {
+function backup_runtime_configuration {
   # If we generated a cryptographic_secret, put it back into the public dir
   if [ -f $HOMEPATH/cryptographic_secret ] && [ ! -f $ROHOMEPATH/cryptographic_secret ]; then
     echo "Backing up cryptographic_secret to your user home"
     cp -va $HOMEPATH/cryptographic_secret $ROHOMEPATH/cryptographic_secret
   fi
+
+  # If we generated a settings.tml, put it back into the public dir
+  if [ -f $HOMEPATH/settings.tml ] && [ ! -f $ROHOMEPATH/settings.tml ]; then
+    echo "Backing up settings.tml to your user home"
+    cp -va $HOMEPATH/settings.tml $ROHOMEPATH/settings.tml
+  fi
 }
-(sleep 10; backup_cryptographic_secret) &
+(sleep 10; backup_runtime_configuration) &
 
 echo "[*] Port: ${NWN_PORT:-5121}/udp"
 
@@ -85,7 +96,7 @@ LD_PRELOAD=$NWN_LD_PRELOAD LD_LIBRARY_PATH=$NWN_LD_LIBRARY_PATH ./nwserver-linux
 RET=$?
 set -e
 
-backup_cryptographic_secret
+backup_runtime_configuration
 
 # If this thing crashed, copy the log to the public home so the user
 # can deliberate over it.
