@@ -17,10 +17,10 @@ fi
 set -x
 mkdir -p data/bin/linux-x86/
 cp -va "$NWN_ROOT"/bin/linux-x86/nwserver-linux data/bin/linux-x86/
-mkdir -p data/data/
-cp -va "$NWN_ROOT"/data/dialog.tlk data/data/
+mkdir -p data/data/ data/lang/en/data
+cp -va "$NWN_ROOT"/lang/en/data/dialog.tlk data/lang/en/data/
 cp -va "$NWN_ROOT"/data/cacert.pem data/data/
-nwn_resman_pkg -d data/data --root "$NWN_ROOT"
+nwn_resman_pkg --verbose -d data/data --root "$NWN_ROOT"
 
 docker build --no-cache -t beamdog/nwserver:$TAG -f Dockerfile .
 docker tag beamdog/nwserver:$TAG beamdog/nwserver:latest
