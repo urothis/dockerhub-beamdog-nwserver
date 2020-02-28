@@ -15,7 +15,7 @@ for p in dialog.tlk dialogf.tlk; do
   if [ ! -L $HOMEPATH/$p ]; then ln -vs $ROHOMEPATH/$p $HOMEPATH/; fi
 done
 
-if [ -e $ROHOMEPATH/settings.tml ]; then
+if [ -e $ROHOMEPATH/settings.tml ] && [ ! -e $HOMEPATH/settings.tml ]; then
   echo "[*] Linking in settings.tml"
   ln -vs $ROHOMEPATH/settings.tml $HOMEPATH/;
 fi
