@@ -17,6 +17,7 @@ RUN mkdir -p /nwn/run
 # Copy them in separate layers so we can store the big bad data
 # layer more efficiently.
 COPY /data/data /nwn/data/data
+COPY /data/lang /nwn/data/lang
 
 ENV NWN_ARCH linux-x86
 
