@@ -67,6 +67,14 @@ function backup_runtime_configuration {
 
 echo "[*] Port: ${NWN_PORT:-5121}/udp"
 
+args=()
+if [[ "${NWN_NWSYNCURL}" != "" ]]; then
+  args+=("-nwsyncurl" "${NWN_NWSYNCURL}")
+fi
+if [[ "${NWN_NWSYNCHASH}" != "" ]]; then
+  args+=("-nwsynchash" "${NWN_NWSYNCHASH}")
+fi
+
 set +e
 LD_PRELOAD=$NWN_LD_PRELOAD LD_LIBRARY_PATH=$NWN_LD_LIBRARY_PATH ./nwserver-linux \
   $NWN_EXTRA_ARGS \
@@ -91,8 +99,7 @@ LD_PRELOAD=$NWN_LD_PRELOAD LD_LIBRARY_PATH=$NWN_LD_LIBRARY_PATH ./nwserver-linux
   -dmpassword "${NWN_DMPASSWORD}" \
   -adminpassword "${NWN_ADMINPASSWORD}" \
   -reloadwhenempty "${NWN_RELOADWHENEMPTY:-0}" \
-  -nwsyncurl "${NWN_NWSYNCURL}" \
-  -nwsynchash "${NWN_NWSYNCHASH}"
+  ${args[@]}
 RET=$?
 set -e
 
