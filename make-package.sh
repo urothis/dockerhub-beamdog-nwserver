@@ -22,7 +22,7 @@ cp -va "$NWN_ROOT"/lang/en/data/dialog.tlk data/lang/en/data/
 cp -va "$NWN_ROOT"/data/cacert.pem data/data/
 nwn_resman_pkg --verbose -d data/data --root "$NWN_ROOT"
 
-docker build --no-cache -t beamdog/nwserver:$TAG -f Dockerfile .
+docker build --pull --no-cache -t beamdog/nwserver:$TAG -f Dockerfile .
 docker tag beamdog/nwserver:$TAG beamdog/nwserver:latest
 set +x
 
