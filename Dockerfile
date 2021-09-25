@@ -22,10 +22,10 @@ COPY /data/lang /nwn/data/lang
 ENV NWN_ARCH linux-x86
 
 COPY /data/bin/${NWN_ARCH} /nwn/data/bin/${NWN_ARCH}
-RUN chmod +x /nwn/data/bin/${NWN_ARCH}/nwserver-linux
-
 COPY /run-server.sh /prep-nwn-ini.awk /prep-nwnplayer-ini.awk /nwn/
-RUN chmod +x /nwn/run-server.sh
+
+RUN chmod +x /nwn/data/bin/${NWN_ARCH}/nwserver-linux && \
+  chmod +x /nwn/run-server.sh
 
 # /nwn/home: This should be mounted by the user.
 VOLUME /nwn/home
